@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Login</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.22" />
+	<style>
+		html
+			{
+				height:100%;
+			}
+			
+		body
+			{
+				height:100%;
+				overflow:auto;
+			}
+			
+		#login-box
+			{
+				margin-left:auto;
+				margin-right:auto;
+				width:500px;
+				border:1px solid black;
+				border-radius:15px;
+				margin-top:200px;
+				padding:15px;
+				overflow:auto;
+			}
+		
+		#login-box h1
+			{
+				margin:3px;
+				padding:5px;
+				text-align:center;
+			}
+			
+		#login-box label
+			{
+				width:30%;
+				display:block;
+				float:left;
+				margin-top:3px;
+			}
+			
+		#login-box input[type="text"], #login-box input[type="password"]
+			{
+				width:68%;
+				display:block;
+				float:left;
+				
+			}
+		
+		#login-box div
+				{
+					overflow:auto;
+				}
+		
+		button
+				{
+					display:block;
+				}
+		
+		
+	</style>
+</head>
+
+<body>
+	<div id="login-box">
+		<h1>LabProject v0.1</h1>
+		<form action="/login" method="post">
+			<div>
+				<label>Username:</label>
+				<input type="text" name="username"/>
+			</div>
+			<div>
+				<label>Password:</label>
+				<input type="password" name="password"/>
+			</div>
+			<div>
+				<input type="submit" value="Log In"/>
+			</div>
+		
+		</form>
+	</div>
+</body>
+
+</html>

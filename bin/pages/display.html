@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Lab Project</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.22" />
+	
+	<script src="/js/jquery.js" type="text/javascript" ></script>
+	<script src="/js/jquery-ui.js" type="text/javascript" ></script>
+	
+	 
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/kinetic.js" type="text/javascript" ></script>
+	<script src="/js/diagram.js" type="text/javascript" ></script>
+	<script src="/js/ejs.js" type="text/javascript" ></script>
+	<script src="/js/generic-functions.js" type="text/javascript" ></script>
+	<script>
+	var socket = io.connect('http://10.0.2.15:8080');
+	var cookiedata = getcookie('socketauth');
+	</script>
+	<script src="/js/device_manager.js" type="text/javascript" ></script>
+	<script src="/js/generic-socket.js" type="text/javascript" ></script>
+	<script src="/js/interface.js" type="text/javascript" ></script>
+	<script src="/js/connection_check.js" type="text/javascript" ></script>
+	<script>
+
+	$(document).ready(function(){
+		lab_interface.init();
+		
+		load_topology()
+		
+		socket.emit('get_topology', { })
+		
+		socket.on('auth_good', function (data) {
+			lab_interface.addMessage('Socket Authentication Complete','notice');
+		});
+		
+		socket.on('broadcast_emit_notice', function(data){
+			lab_interface.addMessage(data.message,'notice');
+			});
+		
+		socket.on('auth_bad', function (data) {
+			lab_interface.addMessage('Socket Authentication Error','warning');
+			
+		});
+		
+		socket.on('no_device_manager_permissions', function (data) {
+			alert('You do not have permissions to access the devices manager!');
+			
+		});
+		
+		
+		socket.on('chat_message', function (data) {
+			lab_interface.addChat(data.user,data.message);
+			
+		});
+		
+
+
+
+
+		
+});
+      
+	
+	
+	
+	
+
+	function get_virtualbox_devices()
+		{
+			socket.emit('get_devices', { provider: 'virtualbox' })
+		
+			socket.on('get_devices_resp', function (data) {
+				
+			});
+		}
+
+
+ 
+  </script>
+	<link rel="stylesheet" type="text/css" href="/css/labproject/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+</head>
+
+<body>
+	
+	<div id="lost-connection"></div>
+	<div id="lost-connection-text">Lost connection: please wait while we attempt to reconnect. </div>
+	<!--
+	Dialogs
+	-->
+	
+	<div id="device_manager_dialog" class="jdialog" title="Device Manager">
+	</div>
+	<div id="dialog" class="jdialog" title="">
+	</div>
+	<div id="dialog2" class="jdialog" title="">
+	</div>	
+	<nav id="navigation">
+		<ul>
+			<li>
+				<a href="#">Menu</a>
+				<ul>
+					<li><a href="#" id="save_lab_button"><img src="/images/uploadbla.png">Save Lab</a></li>
+					<li><a href="#" id="open_lab_button"><img src="/images/boxbla.png">Open Lab</a></li>
+					<li><hr></li>
+					<li><a href="#" id="device_manager_button"><img src="/images/wrenchb.png">Device Manager</a></li>
+					<li><a href="#" id="user_admin_button"><img src="/images/pen.png">User Admin</a></li>
+					<li><hr></li>
+					<li><a href="/pref"><img src="/images/cogsmall.png">Preferences</a></li>
+					<li><hr></li>
+					<li><a href="#" id="user_profile_button"><img src="/images/userb.png">My Profile</a></li>
+					<li><a onclick="$('body').html('');return true;" href="/logout"><img src="/images/arrowr.png">Logout</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">Multi-User</a>
+				<ul>
+					<li><a href="#"><img src="/images/mailblack.png">Show Users</a></li>
+					<li><a href="#"><img src="/images/mailblack.png">Invite</a></li>
+					<li><a href="#"><img src="/images/comment.png">Request</a></li>
+					<li><a href="#"><img src="/images/wrenchb.png">Manage</a></li>
+				</ul>
+			</li>		
+		</ul>
+	</nav>
+	<div id="insert-device">
+		<input type="text" name="device_name" id="device_name">
+		<select id="device_vm">
+			<option value=1" selected="selected">Choose a device</option>
+			<option value=1">Tester01</option>
+			<option value=1">Tester02</option>
+		</select>
+		
+		<label>Start device on add: </label><input type="checkbox" id="start_add">
+	</div>
+	<div id="wrapper">
+		<section id="top">
+			<div id="sidebar-left">
+				<div id="device-menu">
+				  <h3>Network Devices</h3>
+				  <div>
+					<ul>
+						<li><a href="#" data-type="router" class="add_device_button"><img src="/images/router.png">Router</a></li>
+						<li><a href="#" data-type="switch" class="add_device_button"><img src="/images/switch.png">Switch</a></li>
+						<li><a href="#" data-type="firewall" class="add_device_button"><img src="/images/firewall.png">Firewall</a></li>
+					</ul>
+				  </div>
+				  <h3>End Devices</h3>
+				  <div>
+					<ul> 
+						<li><a href="#" data-type="pc" class="add_device_button"><img src="/images/pc.png">PC</a></li>
+						<li><a href="#" data-type="server" class="add_device_button"><img src="/images/file_server.png">Server</a></li>
+						<li><a href="#" data-type="traffic_generator" class="add_device_button"><img src="/images/packet.png">Traffic Generator</a></li>
+						<li><a href="#" data-type="service_verifier" class="add_device_button"><img src="/images/packet.png">Service Verifier</a></li>
+					</ul>
+				  </div>
+				  <h3>Connection</h3>
+				  <div>
+					<ul>
+						<li><a href="#"><img src="/images/connection.png">Ethernet</a></li>
+					</ul>
+				  </div>
+				  <h3>Other</h3>
+				  			
+				  <div>
+					<ul>
+						<li><a href="#"><img src="/images/internet.png">Internet Connection</a></li>
+						<li><a href="#"><img src="/images/external.png">External Connection</a></li>
+					</ul>
+				  </div>
+				</div>
+			</div>
+			<div id="main-display">
+				
+			</div>
+			<div id="sidebar-right">
+			
+			</div>
+		</section>
+		<section id="bottom">
+			<div id="message-box">
+			<div id="message">
+
+			</div>
+			</div>
+			<div id="chatarea">
+				<div id="chat-box">
+					<div id="chat">
+						
+						
+					
+					</div>
+				</div>
+				<input type="text" id="chat_input"> <button id="send_chat">Send</button>
+				<select id="chat_to">
+					<option value="all_users">All Users</option>
+					<option value="just_in_lab">Just in Lab</option>
+				</select>
+			</div>
+		</section>
+	</div>
+
+	
+	
+	
+</body>
+
+</html>

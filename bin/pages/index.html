@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Test</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="generator" content="Geany 1.22" />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> 
+	<script src="http://localhost:8124/socket.io/socket.io.js"></script>
+	<script> 
+	  var socket = io.connect('http://localhost');
+	  socket.on('return_command', function (data) {
+		
+		if (data.status == 'error')
+			{
+				append_textarea(data.message);
+			}
+	  }); 
+	  
+	  // Send commands
+	  $(document).keypress(function(e) {
+			if(e.which == 13) {
+				var commands = $('#commands').val();
+				$('#commands').val('');
+				socket.emit('send_command', { 'command_string':  commands});
+			}
+		});
+		
+		function append_textarea(input_string)
+			{
+				$('#display').append(input_string + "\n");
+			}
+			
+	</script>
+	<style>
+	#display
+		{
+			height:500px;
+			width: 100%;
+			display:block;
+		}
+	
+	#commands
+		{
+			width: 96%;
+			float:left; 
+		}
+		
+	#level
+		{
+			width: 3%;
+			float:left;
+		}
+	</style>
+</head>
+
+<body>
+	<textarea id="display"></textarea>
+	<label id="level">&gt;</label><input type="text" id="commands">
+</body>
+
+</html>

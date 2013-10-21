@@ -1,0 +1,557 @@
+		
+		html
+			{
+				height:100%;
+			}
+			
+		body
+			{
+				height:100%;
+				margin:0px;
+				padding:0px;
+			}
+			
+		nav#navigation
+			{
+				height:30px;
+				width:100%;
+				background: rgb(194,194,194); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(194,194,194,1) 0%, rgba(186,186,186,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(194,194,194,1)), color-stop(100%,rgba(186,186,186,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(194,194,194,1) 0%,rgba(186,186,186,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(194,194,194,1) 0%,rgba(186,186,186,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(194,194,194,1) 0%,rgba(186,186,186,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(194,194,194,1) 0%,rgba(186,186,186,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c2c2c2', endColorstr='#bababa',GradientType=0 ); /* IE6-9 */
+				overflow:auto;
+			}
+			
+		nav#navigation > ul
+			{
+				list-style:none;
+				height:100%;
+				padding:0px;
+				margin:0px;
+				height:30px;
+				
+			}
+			
+		nav#navigation > ul > li
+			{
+				width:100px;
+				height:26px;
+				float:left;
+				font-family:"Arial Black", Gadget, sans-serif;
+
+			}
+			
+		nav#navigation > ul > li > a
+			{
+				display:block;
+				width:100px;
+				height:30px;
+				display: table-cell; 
+			  vertical-align: middle; 
+			  text-align: center; 
+			  color:black;
+			  text-decoration:none;
+			}
+
+		nav#navigation > ul > li ul
+			{
+				position:absolute;
+				z-index:1000;
+				list-style:none;
+				left:-999999px;
+				width:200px;
+				background-color:white;
+				margin:0px;
+				padding:0px;
+				background-color:#D8DFE8;
+				
+			}		
+		
+		nav#navigation > ul > li:hover ul
+			{
+				position:absolute;
+				z-index:1000;
+				list-style:none;
+				left:auto;
+				padding-bottom:10px;
+				padding-top:10px;
+			}
+		
+		
+		nav#navigation > ul > li ul li 
+			{
+				padding-left:25px;
+				padding-right:20px;
+				padding-top:5px;
+				padding-bottom:5px;
+				
+			}
+		nav#navigation > ul > li ul li hr
+			{
+				border:0px solid white;
+				border-top: 1px solid #B2BECF;
+				border-bottom: 1px solid #7E91AB;
+
+			}
+			
+		nav#navigation > ul > li ul li a
+			{
+				color:black;
+				text-decoration:none;
+				display:block;
+				width:100%;
+				
+			}
+		
+		nav#navigation > ul > li ul li a img
+			{
+				vertical-align:middle;
+				margin:3px;
+				margin-right:6px;
+			}
+		
+		nav#navigation > ul > li ul li a:link, nav#navigation > ul > li ul li a:visited
+			{
+				
+			}
+			
+		nav#navigation > ul > li ul li a:active, nav#navigation > ul > li ul li a:hover
+			{
+				text-decoration:underline;
+			}
+		
+		
+		#wrapper
+			{
+				
+				position:absolute;
+				width:100%;
+				position: absolute;
+    top: 30px;
+    bottom: 0;
+				
+				
+			}
+			
+		
+		section#top
+			{
+				
+				width:100%;
+				height:74%;
+				overflow:auto;
+			}
+		
+		section#top > div
+			{
+				float:left;
+				height:100%;
+			}
+		
+		
+		section#top div#sidebar-left
+			{
+				width:14%;
+				border-right:1px solid #EBEBEB;
+				overflow:auto;
+			}
+		
+		section#top div#main-display
+			{
+				width:70%;
+				
+			}
+		
+		section#top div#sidebar-right
+			{
+				width:15%;
+				border-left:1px solid #EBEBEB;
+				overflow:auto;
+			}
+		
+		section#bottom
+			{
+				border-top:1px solid #7A7A7A;
+				width:100%;
+				height:24%;
+			}
+		
+		#message-box
+			{
+				height:100%;
+				width:60%;
+				overflow:auto;
+				float:left;
+			}
+		
+		#message
+			{
+				padding:4px;
+				font-family:Courier New;
+				font-size:.9em;
+				height:99%;
+			}
+		
+		#message span
+			{
+				display:block;
+				margin:3px;
+			}
+		
+		
+		#message span.message-general
+			{
+				color:black;
+				
+			}
+			
+		#message span.message-notice
+			{
+				color:green;
+				
+			}
+			
+		#message span.message-warning
+			{
+				color:red;
+				font-weight:bold;
+			}
+			
+		#message span.message-attention
+			{
+				color:orange;
+				font-weight:bold;
+			}
+		
+		#chat span
+			{
+				display:block;
+				padding:2px;
+				
+			}
+			
+		#chat span.message-chat
+			{
+				color:black;
+				
+			}
+		
+		#chat span.message-chat .chat-user
+			{
+				display:inline-block;
+			}
+			
+		#chat span.message-chat .chat-user-black
+			{
+				color:#00FFEE;
+				
+			}
+		
+		#chat span.message-chat .chat-user-cyan
+			{
+				color:#00FFEE;
+				
+			}
+		
+		#chat span.message-chat .chat-user-green
+			{
+				color:green;
+			}
+		
+		#chatarea
+			{
+				float:left;
+				height:100%;
+				width:40%;
+			}
+		
+		#chatarea select
+			{
+			width:20%;
+			}
+		
+		#chat-box
+			{
+				height:90%;
+				overflow:auto;
+				width:100%;
+			}
+		
+		#device-menu
+			{
+				width:100%;
+				overflow:auto;
+			}
+			
+		#device-menu h3
+			{
+				font-size:1.1em;
+				
+			}
+			
+		#device-menu div
+			{
+				padding:0px;
+				
+			}
+			
+		#device-menu div ul
+			{
+				list-style:none;
+				margin:0px;
+				padding:0px;
+				width:100%;
+			}
+			
+		#device-menu div ul li
+			{
+				
+			}
+			
+		#device-menu div ul li a
+			{
+				
+				display:block;
+				padding:5px;
+				text-decoration:none;
+				
+			}
+			
+		#device-menu div li a img 
+			{
+				vertical-align:middle;
+				padding-right:5px;
+				height:25px;
+				width:25px;
+			}
+			
+		#device-menu div ul li a:hover
+			{
+				
+				display:block;
+				background-color:#E4E9F0;
+			}
+
+.jdialog img
+	{
+	 display:block;
+	 margin-left:auto;
+	 margin-right:auto;
+
+	}
+
+#device_dialog
+		{
+			
+		}
+
+#device_dialog select
+	{
+		display:block;
+		padding:5px;
+		margin:15px;
+	}
+
+#device_dialog span
+	{
+		display:block;
+	}
+
+#device_manager_tabs ul li img
+	{
+		display:inline-block;
+		margin:0px;
+		vertical-align:middle;
+		padding-right:5px;
+	}
+
+#available_providers
+{
+overflow:auto;
+}
+
+#available_providers ul 
+{
+list-style:none;
+border-top:1px solid black;
+border-left:1px solid black;
+border-right:1px solid black;
+padding:0px;
+margin:0px;
+}
+
+#available_providers ul li
+{
+display:block;
+padding:15px;
+border-bottom:1px solid black;
+min-height:100px;
+}
+
+#available_providers ul li .name
+{
+display:inline-block;
+width:150px;
+}
+
+#available_providers ul li .version
+{
+font-weight:bold;
+display:inline-block;
+margin-left:10px;
+width:100px;
+}
+
+#available_providers ul li .vmlink
+{
+font-weight:bold;
+display:inline-block;
+margin-left:15px;
+}
+
+#available_providers ul li img
+{
+vertical-align:middle;
+margin:0px;
+display:inline-block;
+margin-right:15px;
+width:24px;
+}
+
+#available_providers ul li img.indicate
+{
+width:24px;
+}
+
+#available_providers ul li img.logos
+{
+
+width:50px;
+}
+
+
+#available_providers ul li img.libvirt-logo
+{
+
+width:75px;
+}
+
+
+
+
+
+#title-box
+{
+border:1px solid black;
+overflow:auto;
+}
+
+.title-box-item
+{
+padding:5px;
+display:inline-block;
+text-align:center;
+overflow:auto;
+}
+
+.user-box-item
+{
+padding:10px;
+padding-left:5px;
+padding-right:5px;
+display:inline-block;
+text-align:center;
+overflow:auto;
+vertical-align:middle;
+}
+
+.user-box-item img, .user-box-item a img
+{
+vertical-align:middle;
+}
+
+.username-box
+{
+width:  30%;
+display:inline-block;
+}
+
+.email-box
+{
+display:inline-block;
+width:20%;
+}
+
+
+.userpriv
+{
+width:10%;
+}
+
+.devicepriv
+{
+width:10%;
+}
+
+.priv-button
+{
+width:5%;
+}
+
+.new_user_input
+{
+display:block;
+margin:3px;
+}
+
+.screen-loading
+{
+width:100%;
+height:100%;
+background-color:#F5F5F5;
+opacity:0.2;
+filter:alpha(opacity=20); 
+position:relative; 
+}
+
+.screen-loading div
+{
+background:url(/images/wait.gif) center center no-repeat;
+width:100%;
+height:100%;
+opacity:1;
+filter:alpha(opacity=100); 
+position:relative;
+}
+
+#lost-connection
+{
+display:none;
+position:absolute;
+width:100%;
+height:100%;
+border: 0px solid #DB0000;
+color: #DB0000;
+background-color:#FFD1D1;
+padding:15px;
+opacity:0.2;
+filter:alpha(opacity=20); 
+z-index:9000;
+font-size:1.2em;
+}
+
+#lost-connection-text
+{
+display:none;
+position:absolute;
+font-size:1.2em;
+border: 0px solid #DB0000;
+color: #DB0000;
+background-color:#FFD1D1;
+pading:15px;
+margin:15px;
+}

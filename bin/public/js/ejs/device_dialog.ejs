@@ -1,0 +1,35 @@
+<div id="device_manager_tabs">
+  <ul>
+	<li><a href="#main-tab" id="main-tab-button"><img src="images/providers.png">Providers</a></li>
+	<li><a href="#hosts-tab" id="hosts-tab-button"><img src="images/hosts.png">Hosts</a></li>
+    <li><a href="#registered-tab" id="registered-tab-button"><img src="images/registered.png">Registered Devices</a></li>
+  </ul>
+  <div id="main-tab">
+	  <div id="available_providers">
+		 
+		  <ul>
+				<li> <img class="libvirt-logo" src="images/logos/libvirt-logo.png"> <span class="version">Libvirt Version: </span> <%= libvirt %></li>
+				
+				<% for(var i=0; i<providers.length; i++) { %>
+				<li>
+						<img class="logos" src="images/logos/<%= providers[i].name %>-logo.png">
+						<img class="indicate" src="images/<%= providers[i].available %>.png">
+						<span class="name"><%= fullname[providers[i].name]  + " "%></span>
+						
+						<% if(providers[i].available=='yes') { %>
+							<span class="version">Version: </span> <%= providers[i].version%>
+							<a href="#" class="vmlink provider-manage" data-provider="<%= providers[i].name %>" >Manage Virtual Machines</a>
+						<% } %>
+				</li>
+				<% } %> 
+			
+		</ul>
+	  </div>
+  </div>
+  <div id="hosts-tab">
+	 
+  </div>
+  <div id="registered-tab">
+	 
+  </div>
+</div>

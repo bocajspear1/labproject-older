@@ -1,0 +1,38 @@
+<div id="device_dialog">
+	<div><button id="new_user_button">New User</button></div>
+	<h2>Users</h2>
+	
+	<div id="user_list">
+		<div id="title-box" class="">
+			<div class="title-box-item username-box"><h3>Username</h3></div>
+			<div class="title-box-item email-box"><h3>Email</h3></div>
+			<div class="title-box-item userpriv"><h3>User Priv.</h3></div>
+			<div class="title-box-item devicepriv"><h3>Device Priv.</h3></div>
+			<div class="title-box-item priv-button"><h3>Edit</h3></div>
+			<div class="title-box-item priv-button"><h3>Delete</h3></div>
+		</div>
+	<% for(var i=0; i<users.length; i++) { %>
+			<div id="<%= users[i].username %>-box" class="">
+				<div class="user-box-item username-box"><%= users[i].username %></div>
+				<% if (users[i].privileges.email) { %>
+					<div class="user-box-item email-box"><%= users[i].email %></div>
+				<% } else { %>
+					<div class="user-box-item email-box">None</div>
+				<% } %>
+				<% if (users[i].privileges.users === true) { %>
+					<div class="user-box-item userpriv"><img src="images/yes.png"></div>
+				<% } else { %>
+					<div class="user-box-item userpriv"><img src="images/no.png"></div>
+				<% } %>
+				<% if (users[i].privileges.devices === true) { %>
+					<div class="user-box-item devicepriv"><img src="images/yes.png"></div>
+				<% } else { %>
+					<div class="user-box-item devicepriv"><img src="images/no.png"></div>
+				<% } %>
+				<div class="user-box-item priv-button"><a href="#" id="edit-user-button" data-username="<%= users[i].username %>"><img src="images/pen_blue.png"></a></div>
+				<div class="user-box-item priv-button"><a href="#" id="delete-user-button" data-username="<%= users[i].username %>"><img src="images/trash.png"></a></div>
+			</div>
+	<% } %> 
+	</div>
+	
+</div>
