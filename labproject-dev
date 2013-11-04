@@ -1,1 +1,1 @@
-nodemon ./bin/labproject.js
+nodemon ./lp-bin/app.js
