@@ -1,16 +1,37 @@
 var database = require('../../database');
+var libvirt = require('libvirt');
+var config = require('../../../config');
+var virtualization = require('./virtualization');
 
 exports.actions = function(req, res, ss){
-	req.use('session');
+	req.use('node_session.run');
 	req.use('auth_check.run');
 	
 	return {
-		get_register_devices: get_register_devices,
-		register_device: register_device,
-		find_unregistered_devices: find_unregistered_devices,
+		get_available_hypervisors: function()
+			{
+				res(virtualization.get_available_hypervisors());
+			}
 	}
 	
 }
+
+function get_available_hypervisors()
+	{
+	
+		var results = Array();
+		
+		var hypervisors = config.hypervisors;
+		for (var i = 0;i < hypervisors.length; i++)
+			{
+				if (hypervisors[i].enabled === true)
+					{
+						results.push({name: hypervisors[i].name, id: hypervisors[i].libvirtstring});
+					}
+			}
+	
+		res(results);
+	}
 
 function get_register_devices(callback)
 	{
@@ -34,8 +55,7 @@ function find_unregistered_devices(callback)
 		
 	}
 
-function new_device(callback)
-	{
+
 		
 	}
 	

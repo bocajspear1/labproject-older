@@ -1,24 +1,33 @@
 var database = require('../database');
 var crypto = require('../cryptojs');
+var user_session = require('../user_session');
 
 exports.actions = function(req, res, ss){
-	req.use('session');
+
+	//console.log(req);
+		
+	//req.use('session');
+	req.use('node_session.run');
+	var temp = res;
+	res = function(input){
+			res = temp;
+			req.session.save();
+			res(input);
+		};
+	
 	
 	return {
 
 		authenticate: function(username,password){
 			
-			database.findOne('current_users',{username: username},function(results){
-				
-				if (results)
+			user_session.check(username,function(result){
+				if (result===false)
 					{
-						
 						req.session.authenticated = false;
 						req.session.save();
 						res({'auth_result':'fail'});
 					}else{
-
-						database.findOne('users',{username: username},function(result){
+							database.findOne('users',{username: username},function(result){
 							if (!result)
 								{
 									req.session.authenticated = false;
@@ -42,15 +51,13 @@ exports.actions = function(req, res, ss){
 									
 								}
 						});
-						
 					}
 			});
 			
 			//res({'AUTH':'SUCCESS'});
 		},
 		check: function(){
-			//console.log(req.session.authenticated);
-			
+			console.log("Checking");
 			if (req.session && req.session.authenticated===true)
 				{
 					res('success');
@@ -65,6 +72,28 @@ exports.actions = function(req, res, ss){
 				req.session.username = false;
 				req.session.save();
 				res('logout');
+			},
+			
+		device_permissions: function()
+			{
+				if (req.session&&req.session.authenticated === true)
+					{
+						var username = req.session.username;
+						database.findOne('users',{username: username},function(result){
+							if (!result)
+								{
+									res('FAIL');
+								}else{
+									if(result.privileges.devices === true)
+										{
+											res('SUCCESS');
+										}else{
+											res('FAIL');
+										}
+								}
+						});
+					}
+				
 			}
 		
 	}

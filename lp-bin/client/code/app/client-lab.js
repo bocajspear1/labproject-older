@@ -5,20 +5,25 @@ module.exports = {
 	},
 	check_lab: function(callback){
 		ss.rpc('lab.check_lab', name, function(response){
-			if (response=='success')
+			if (response=='none')
 				{
-					callback(true);
-				}else{
 					callback(false);
+				}else{
+					callback(response);
 				}
 		});
 	},
 	delete_lab: function(callback){
-		ss.rpc('auth.logout', function(response){
+		ss.rpc('lab.delete_lab', function(response){
 			callback(response);	
 		});
 	},
 	modify_lab: function(){
 		alert(1);
+	},
+	load_lab: function(){
+		ss.rpc('lab.update_lab', name, function(response){
+			
+		});
 	}
 }

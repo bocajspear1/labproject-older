@@ -1,7 +1,13 @@
 var database = require('../database');
 
 exports.actions = function(req, res, ss){
-	req.use('session');
+	req.use('node_session.run');
+	var temp = res;
+	res = function(input){
+			res = temp;
+			req.session.save();
+			res(input);
+		};
 	req.use('auth_check.run');
 	
 	return {
@@ -10,19 +16,24 @@ exports.actions = function(req, res, ss){
 			database.find('current_labs',{username: username},{},function(results){
 			if (results)
 				{
-					res('success');
+					res(results.name);
 				}else{
-					res('fail');
+					res('none');
 				}
 			});	
 		},
 		new_lab: function(name){
-		
+			database.insert('current_labs',{},function(){
+				var time = new Date().getTime();
+				var lab_name = name + time;
+				
+				res(lab_name);
+			});
 		},
 		delete_lab: function(){
 			res();
 		},
-		update_lab: function(){
+		update_lab: function(name){
 			res();
 		},
 		

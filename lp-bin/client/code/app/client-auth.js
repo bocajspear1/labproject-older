@@ -10,8 +10,15 @@ module.exports = {
 			callback(response);	
 		});
 	},
-	get_permissions: function(){
-		alert(1);
+	check_device_permissions: function(callback){
+		ss.rpc('auth.device_permissions', function(response){
+			if (response=='SUCCESS')
+				{
+					callback(true);
+				}else{
+					callback(false);
+				}
+		});
 	}
 }
 

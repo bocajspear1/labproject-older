@@ -351,9 +351,26 @@ background-repeat:no-repeat;
 background-position:center center; 
 }
 
+#login-message
+{
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-ms-box-sizing: border-box;
+-o-box-sizing: border-box;
+box-sizing: border-box;
+color:red;
+}
+
 #chat
 {
 height:35%;
 position:absolute;
 bottom:0;
+}
+
+#new_device_button
+{
+display:block;
+padding:5px;
+margin:15px;
 }
