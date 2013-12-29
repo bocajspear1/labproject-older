@@ -1,4 +1,7 @@
-var database = require('../database');
+var LABPROJECT_BASE = process.cwd();
+var LABPROJECT_SERVER_LIBS = LABPROJECT_BASE + "/server/lib";
+
+var database = require(LABPROJECT_SERVER_LIBS + '/database');
 
 exports.actions = function(req, res, ss){
 	req.use('node_session.run');

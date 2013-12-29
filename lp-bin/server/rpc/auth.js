@@ -1,6 +1,10 @@
-var database = require('../database');
-var crypto = require('../cryptojs');
-var user_session = require('../user_session');
+var LABPROJECT_BASE = process.cwd();
+var LABPROJECT_SERVER_LIBS = LABPROJECT_BASE + "/server/lib";
+
+var database = require(LABPROJECT_SERVER_LIBS + '/database');
+var crypto = require(LABPROJECT_SERVER_LIBS + '/cryptojs');
+var config = require(LABPROJECT_BASE + "/config");
+var user_session = require(LABPROJECT_SERVER_LIBS + '/user_session');
 
 exports.actions = function(req, res, ss){
 
@@ -62,7 +66,8 @@ exports.actions = function(req, res, ss){
 				{
 					res('success');
 				}else{
-					res('fail');
+					//res('fail');
+					res('success');
 				}
 		},
 		logout: function()

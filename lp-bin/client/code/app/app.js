@@ -1,12 +1,14 @@
-
+console.log('Start Includes');
 var auth = require('./client-auth');
 var lab = require('./client-lab');
 var interface = require('./interface');
+console.log('End Start Includes');
 
-
-
+console.log('Starting Interface');
 interface.start();
+console.log('Done Starting Interface');
 
+console.log('Starting Button Stuff');
 interface.button('login-button',function(){
 	var username = $('#username-textbox').val();
 	var password = $('#password-textbox').val();
@@ -73,6 +75,14 @@ interface.button('new_device_button',function(){
 					interface.show_banner_alert("You do not have permssions to create new devices","ERROR");
 				}
 	});
+});
+
+interface.button('notepad_tab_button',function(){
+	console.log('Clicked!')
+	$(".shown_tab").attr('class', 'hidden_tab');
+	$("#notepad_tab").attr('class', 'shown_tab');
+	$("#notepad_tab").html('<input type="text" id="notepad_textbox"><button>Save</button><button>Load</button><textarea id="insert_codemirror" name="insert_codemirror"></textarea>');
+	var editor = CodeMirror.fromTextArea(document.getElementById('insert_codemirror'));
 });
 
 function on_login()

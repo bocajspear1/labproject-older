@@ -11,5 +11,5 @@ module.exports = {
 	// The path where the libvirt pool is. Do not make relative path. Do not put a slash on the end
 	pool_path: '/home/jacob/labproject-pool',
 	// The path where the ISO storage is. Do not make relative path. Do not put a slash on the end
-	pool_path: '/home/jacob/labproject-isos'
+	iso_path: '/home/jacob/labproject-isos'
 };

@@ -364,8 +364,57 @@ color:red;
 #chat
 {
 height:35%;
-position:absolute;
+width:100%;
+}
+
+#chat-input
+{
 bottom:0;
+}
+
+#server-messages
+{
+height:50%;
+width:100%;
+top:0;
+background-color:white;
+}
+
+#sidebar
+{
+height:64%;
+
+
+
+}
+
+
+
+#tab_buttons
+{
+	list-style:none;
+	height:10%;
+}
+
+#tab_buttons li
+{
+float:left;
+}
+
+#tab_buttons a
+{
+padding:7px;
+background-color:blue;
+}
+
+.shown_tab
+{
+height:89%;
+}
+
+.hidden_tab
+{
+display:none;
 }
 
 #new_device_button

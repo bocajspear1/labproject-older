@@ -1,21 +1,36 @@
+var LABPROJECT_BASE = process.cwd();
+var LABPROJECT_SERVER_LIBS = LABPROJECT_BASE + "/server/lib";
+
 var mongodb = require('mongodb');
 var mongoclient = mongodb.MongoClient;
-var mongostring = require('../config').database_connection_string;
+var mongostring = require(LABPROJECT_BASE + '/config').database_connection_string;
 
 
 module.exports = {
 	find: function(collection_name,query,options,callback){
 		mongoclient.connect(mongostring, function(err, db) {
-			
-			db.collection(collection_name).find(query,options).toArray(function(err, query_results){
+			var fields = {}
+			if (options&&options.fields)
+				{
+					fields = options.fields;
+				}
+			var cursor = db.collection(collection_name).find(query, fields, options);
+			if (cursor)
+				{
+					cursor.toArray(function(err, query_results){
 					if (err)
 						{
-							console.log(err);
-							throw new Error('Error in find query!');
+							callback({ERROR: err});
+						}else{
+							callback(query_results);
 						}
-					callback(query_results);	
+							
 						
-				});
+					});
+				}else{
+					callback(false);
+				}
+			
 			
 			
 			
@@ -26,13 +41,13 @@ module.exports = {
 			var col = db.collection(collection_name)
 			if (col)
 				{
-					col.findOne(query, function(err, query_result) {
+					col.findOne(query, function(err, query_results) {
 						if (err)
 							{
-								console.log(err);
-								throw new Error('Error in findOne query!');
+								callback({ERROR: err});
+							}else{
+								callback(query_results);
 							}
-						callback(query_result);
 					});
 				}else{
 					throw new Error('Invalid collection name ' + collection_name);
@@ -45,13 +60,13 @@ module.exports = {
 			var col = db.collection(collection_name)
 			if (col)
 				{
-					col.insert(query, {safe:true}, function(err, query_result) {
+					col.insert(query, {safe:true}, function(err, query_results) {
 						if (err)
 							{
-								console.log(err);
-								throw new Error('Error in insert query!');
+								callback({ERROR: err});
+							}else{
+								callback(query_results);
 							}
-						callback(query_result);
 					});
 				}else{
 					throw new Error('Invalid collection name ' + collection_name);
@@ -69,13 +84,14 @@ module.exports = {
 						{
 							options.multi = true;
 						}
-					col.update(query, update, options, function(err, query_result) {
+					col.update(query, update, options, function(err, query_results) {
 						if (err)
 							{
-								console.log(err);
-								throw new Error('Error in update query!');
+								callback({ERROR: err});							
+							}else{
+								callback(query_results);
 							}
-						callback(query_result);
+
 					});
 				}else{
 					throw new Error('Invalid collection name ' + collection_name);
@@ -88,13 +104,13 @@ module.exports = {
 			var col = db.collection(collection_name)
 			if (col)
 				{
-					col.remove(query, {safe:true}, function(err, query_result) {
+					col.remove(query, {safe:true}, function(err, query_results) {
 						if (err)
 							{
-								console.log(err);
-								throw new Error('Error in remove query!');
+								callback({ERROR: err});
+							}else{
+								callback(query_results);
 							}
-						callback(query_result);
 					});
 				}else{
 					throw new Error('Invalid collection name ' + collection_name);

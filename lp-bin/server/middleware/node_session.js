@@ -1,9 +1,13 @@
+var LABPROJECT_BASE = process.cwd();
+var LABPROJECT_SERVER_LIBS = process.cwd() + "/server/lib";
+
+var database = require(LABPROJECT_SERVER_LIBS + '/database');
+
+var config = require(LABPROJECT_BASE +'/config');
+var user_session = require(LABPROJECT_SERVER_LIBS + '/user_session');
 
 
-var user_session = require('../user_session');
-var database = require('../database');
-
-var connection_string = require('../../config').database_connection_string;
+var connection_string = config.database_connection_string;
 var storage_manager = require('./mongodb_node_session.js').session_storage;
 
 var session_storage = new storage_manager({connection_string: connection_string});

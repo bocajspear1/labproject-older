@@ -16,7 +16,6 @@ module.exports = {
 			if (response=='success')
 				{
 					innerthis.login_overlay_disable();
-					
 				}else{
 					
 				}
@@ -26,6 +25,7 @@ module.exports = {
 			},1000);
 			
 		});
+		console.log("Done Init Interface");
 	},
 	
 	button: function(id, onclick){

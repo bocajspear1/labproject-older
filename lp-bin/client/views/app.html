@@ -99,10 +99,26 @@
 				<div id="diagram-holder"></div>
 			</div>
 			<div id="right">
-			<div id="sidebar"></div>
+			<div id="sidebar">
+				<ul id="tab_buttons">
+					<li><a href="#" id="server_tab_button" class="tab_button">Server</a></li>
+					<li><a href="#" id="lab_tab_button" class="tab_button">Lab</a></li>
+					<li><a href="#" id="notepad_tab_button" class="tab_button">Notepad</a></li>
+				</ul>
+				<div id="default_tab" class="shown_tab"></div>
+				<div id="server_tab" class="hidden_tab"></div>
+				<div id="lab_tab" class="hidden_tab"></div>
+				<div id="notepad_tab" class="hidden_tab">
+					<button id="new_notepad">New</button>
+					<button id="load_notepad">Load</button>
+				</div>
+				
+			</div>
 			<div id="chat">
 				<div id="chat-text">
 				
+				</div>
+				<div id="server-messages">
 				</div>
 				<div id="chat-input"><input type="text" id="chat-textbox"></div>
 			</div>

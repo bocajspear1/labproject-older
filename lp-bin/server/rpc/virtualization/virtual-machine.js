@@ -1,7 +1,14 @@
-var database = require('../../database');
+var LABPROJECT_BASE = process.cwd();
+var LABPROJECT_SERVER_LIBS = LABPROJECT_BASE + "/server/lib";
+
+var database = require(LABPROJECT_SERVER_LIBS + '/database');
+var config = require(LABPROJECT_BASE + "/config");
+var virtualization = require(LABPROJECT_SERVER_LIBS + '/virtualization');
+
 var libvirt = require('libvirt');
-var config = require('../../../config');
-var virtualization = require('./virtualization');
+
+
+
 
 exports.actions = function(req, res, ss){
 	req.use('node_session.run');
@@ -57,7 +64,6 @@ function find_unregistered_devices(callback)
 
 
 		
-	}
 	
 function delete_device(callback)
 	{

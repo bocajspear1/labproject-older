@@ -1,0 +1,14 @@
+GlobalAdmin: Manage all users in all groups, Manage all devices
+GroupAdmin: Manages all users in a particular group, 
+
+NormalUser:
+
+{username: 'admin', salt: 'adsfasfdasdf', password: 'adfasfasdf', groups: ['GlobalAdmin'], permissions:{user:[],device:[]}}
+
+{groupname: 'GlobalAdmin', permissions: {user: [{group: 'GLOBAL', modify: true], device: [{type: 'group', groupid: 'GLOBAL', access: true, modify: true}]}}
+
+{username: 'basicuser', salt: 'adsfasfdasdf', password: 'adfasfasdf', groups: [], permissions: {user: [], device: [{type: 'group', groupid: 'GLOBAL', access:true, modify: false},{type: 'single', uuid:'1234-234234', access:false, modify: false ]}
+
+{groupname: 'Global', permissions
+
+{groupname: '
