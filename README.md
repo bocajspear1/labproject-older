@@ -1,3 +1,5 @@
+# THIS REPO IS DEPRECATED! LOOK AT THE labproject REPO
+
 LabProject is my work in progress idea to create a virtualized lab enviroment with a web based interface.
 
 Planned Features:
